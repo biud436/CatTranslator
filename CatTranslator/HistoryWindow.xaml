@@ -1,0 +1,57 @@
+<Window x:Class="CatTranslator.HistoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="번역 기록 - 고양이 번역기"
+        Width="780" Height="500" MinWidth="560" MinHeight="320"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="12">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Horizontal scrolling disabled so long previews are trimmed with an ellipsis. -->
+        <ListBox x:Name="EntryList" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="2,3">
+                        <TextBlock Text="{Binding Header}" Foreground="Gray" FontSize="11" />
+                        <TextBlock Text="{Binding Preview}" TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="원문" FontWeight="Bold" Margin="0,0,0,4" />
+            <TextBox Grid.Row="1" x:Name="SourceBox" IsReadOnly="True" TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto" />
+            <TextBlock Grid.Row="2" Text="번역문" FontWeight="Bold" Margin="0,10,0,4" />
+            <TextBox Grid.Row="3" x:Name="TranslationBox" IsReadOnly="True" TextWrapping="Wrap"
+                     VerticalScrollBarVisibility="Auto" FontSize="14" />
+            <TextBlock Grid.Row="4" x:Name="WarningText" TextWrapping="Wrap" Foreground="#B45309"
+                       Margin="0,6,0,0" Visibility="Collapsed" />
+        </Grid>
+
+        <DockPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="0,12,0,0">
+            <TextBlock x:Name="CountText" VerticalAlignment="Center" Foreground="Gray" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="CopyButton" Content="번역문 복사" Click="OnCopy" Style="{StaticResource DialogButton}" />
+                <Button Content="모두 지우기" Click="OnClear" Style="{StaticResource DialogButton}" />
+                <Button Content="닫기" IsCancel="True" Click="OnClose" Style="{StaticResource DialogButton}" />
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

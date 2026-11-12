@@ -1,0 +1,38 @@
+# Secrets / local environment
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# .NET build output
+bin/
+obj/
+[Tt]est[Rr]esults/
+*.binlog
+
+# IDE / editor
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.rsuser
+*.DotSettings.user
+*.swp
+
+# Claude Code personal settings
+.claude/settings.local.json
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Misc
+*.log
+*.tmp

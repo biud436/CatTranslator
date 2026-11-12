@@ -1,0 +1,69 @@
+<Window x:Class="CatTranslator.CatWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="고양이 번역기"
+        Width="88" Height="88"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize"
+        ShowActivated="False">
+    <!-- Root has no background: only the painted cat receives clicks, the rest is click-through. -->
+    <Grid x:Name="Root" Cursor="Hand"
+          ToolTipService.InitialShowDelay="900">
+        <Viewbox>
+            <Canvas Width="100" Height="100">
+                <Ellipse Canvas.Left="20" Canvas.Top="86" Width="60" Height="9" Fill="#33000000" />
+
+                <!-- Ears -->
+                <Path Data="M 16,46 L 22,8 L 46,26 Z" Fill="#F4A259" Stroke="#5C3D2E"
+                      StrokeThickness="2.5" StrokeLineJoin="Round" />
+                <Path Data="M 84,46 L 78,8 L 54,26 Z" Fill="#F4A259" Stroke="#5C3D2E"
+                      StrokeThickness="2.5" StrokeLineJoin="Round" />
+                <Path Data="M 23,36 L 25.5,16 L 39,27 Z" Fill="#F7C6C7" />
+                <Path Data="M 77,36 L 74.5,16 L 61,27 Z" Fill="#F7C6C7" />
+
+                <!-- Head -->
+                <Ellipse Canvas.Left="10" Canvas.Top="20" Width="80" Height="68"
+                         Fill="#F4A259" Stroke="#5C3D2E" StrokeThickness="2.5" />
+                <Path Data="M 44,26 L 46,34 M 50,24 L 50,34 M 56,26 L 54,34"
+                      Stroke="#C9733A" StrokeThickness="2.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+
+                <!-- Eyes (scaled vertically to blink) -->
+                <Canvas x:Name="Eyes">
+                    <Canvas.RenderTransform>
+                        <ScaleTransform CenterY="52" />
+                    </Canvas.RenderTransform>
+                    <Ellipse Canvas.Left="31" Canvas.Top="46" Width="9" Height="12" Fill="#2B1D16" />
+                    <Ellipse Canvas.Left="60" Canvas.Top="46" Width="9" Height="12" Fill="#2B1D16" />
+                    <Ellipse Canvas.Left="33.5" Canvas.Top="48" Width="3" Height="3" Fill="White" />
+                    <Ellipse Canvas.Left="62.5" Canvas.Top="48" Width="3" Height="3" Fill="White" />
+                </Canvas>
+
+                <!-- Cheeks, nose, mouth, whiskers -->
+                <Ellipse Canvas.Left="20" Canvas.Top="60" Width="12" Height="7" Fill="#F28B82" Opacity="0.6" />
+                <Ellipse Canvas.Left="68" Canvas.Top="60" Width="12" Height="7" Fill="#F28B82" Opacity="0.6" />
+                <Path Data="M 46.5,60 L 53.5,60 L 50,64 Z" Fill="#E07A7A" Stroke="#5C3D2E"
+                      StrokeThickness="1" StrokeLineJoin="Round" />
+                <Path Data="M 50,64 Q 50,69 45,69 M 50,64 Q 50,69 55,69" Stroke="#5C3D2E"
+                      StrokeThickness="1.8" StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+                <Path Data="M 4,57 L 26,61 M 4,66 L 26,65 M 96,57 L 74,61 M 96,66 L 74,65"
+                      Stroke="#5C3D2E" StrokeThickness="1.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round" />
+            </Canvas>
+        </Viewbox>
+
+        <!-- Shown while a translation request is in flight. -->
+        <Border x:Name="BusyBadge" Visibility="Collapsed"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2,0,0"
+                Background="White" BorderBrush="#5C3D2E" BorderThickness="1.5"
+                CornerRadius="8" Padding="6,0,6,3">
+            <TextBlock Text="…" FontSize="14" FontWeight="Bold" Foreground="#5C3D2E" />
+        </Border>
+
+        <!-- Shown briefly after an error. -->
+        <Border x:Name="ErrorBadge" Visibility="Collapsed"
+                HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2,2,0"
+                Width="20" Height="20" CornerRadius="10" Background="#D93025">
+            <TextBlock Text="!" FontSize="13" FontWeight="Bold" Foreground="White"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Border>
+    </Grid>
+</Window>

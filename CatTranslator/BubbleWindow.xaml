@@ -1,0 +1,25 @@
+<Window x:Class="CatTranslator.BubbleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="번역 결과"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize"
+        ShowActivated="False" SizeToContent="WidthAndHeight">
+    <Border Margin="6" Padding="12,8,12,10" CornerRadius="10"
+            Background="#FFFDF8" BorderBrush="#5C3D2E" BorderThickness="1.5">
+        <StackPanel MinWidth="220" MaxWidth="420">
+            <DockPanel Margin="0,0,0,6">
+                <Button DockPanel.Dock="Right" Content="✕" Click="OnClose" Padding="6,0"
+                        Background="Transparent" BorderThickness="0" ToolTip="닫기 (Esc)" />
+                <Button DockPanel.Dock="Right" x:Name="CopyButton" Content="복사" Click="OnCopy"
+                        Padding="8,1" Margin="0,0,6,0" />
+                <TextBlock x:Name="TitleText" FontWeight="Bold" VerticalAlignment="Center" Foreground="#5C3D2E" />
+            </DockPanel>
+            <TextBlock x:Name="WarningText" TextWrapping="Wrap" Foreground="#B45309"
+                       Margin="0,0,0,6" Visibility="Collapsed" />
+            <TextBox x:Name="BodyText" IsReadOnly="True" TextWrapping="Wrap" BorderThickness="0"
+                     Background="Transparent" FontSize="14" MaxHeight="320"
+                     VerticalScrollBarVisibility="Auto" />
+        </StackPanel>
+    </Border>
+</Window>
